@@ -25,7 +25,7 @@ public class Main {
 		}
 		reader.close();
 		
-		StringCalculator calculator = new StringCalculator();
+		StringCalculator calculator = StringCalculator.getInstance();
 		for(int j=0; j<t; j++) {
 			try {
 				System.out.println("Case #"+(j+1)+": "+calculator.evaluate(inputs[j]));

@@ -12,13 +12,22 @@ import com.calculator.validator.ExpressionValidator;
 public class StringCalculator {
 	private ExpressionValidator validator;
 	private ScriptEngine engine;
+	private static StringCalculator stringCalculator;
 	
-	public StringCalculator() {
+	private StringCalculator() {
 		validator = new ExpressionValidator();
 		ScriptEngineManager mgr = new ScriptEngineManager();
 	    engine = mgr.getEngineByName("JavaScript");
 	}
 	
+	public static StringCalculator getInstance() {
+		synchronized (StringCalculator.class) {
+			if(stringCalculator==null) {
+				stringCalculator = new StringCalculator();
+			}
+		}
+		return stringCalculator;
+	}
 	public String evaluate(String expression) throws ScriptException {
 		if(!validator.isValid(expression)) {
 			return Constants.INVALID_EXPRESSION;

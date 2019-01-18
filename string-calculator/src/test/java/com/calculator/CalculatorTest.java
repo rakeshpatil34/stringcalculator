@@ -11,7 +11,7 @@ import com.calculator.StringCalculator;
 import com.calculator.constants.Constants;
 
 class CalculatorTest {
-	private StringCalculator calculator =new StringCalculator();
+	private StringCalculator calculator =  StringCalculator.getInstance();
 	
 	@BeforeEach
 	void setUp() throws Exception {
