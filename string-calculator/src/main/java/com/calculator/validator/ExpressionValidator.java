@@ -6,6 +6,23 @@ import java.util.regex.Pattern;
 import com.calculator.constants.Constants;
 
 public class ExpressionValidator {
+	private static ExpressionValidator validator;
+	
+	private ExpressionValidator() {
+	}
+	
+	public static ExpressionValidator getInstance() {
+		
+		if (validator == null) {
+			synchronized (ExpressionValidator.class) {
+				if (validator == null) {
+					validator = new ExpressionValidator();
+				}
+			}
+		}
+		return validator;
+	}
+	
 	public boolean hasValidCharacters(String expression) {
 		expression = expression.replaceAll("\\s", "");
 		return !expression.isEmpty()&&Pattern.matches("["+Constants.OPERATORS+"\\d]*", expression);

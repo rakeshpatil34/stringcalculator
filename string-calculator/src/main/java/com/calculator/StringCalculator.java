@@ -15,15 +15,17 @@ public class StringCalculator {
 	private static StringCalculator stringCalculator;
 	
 	private StringCalculator() {
-		validator = new ExpressionValidator();
+		validator = ExpressionValidator.getInstance();
 		ScriptEngineManager mgr = new ScriptEngineManager();
 	    engine = mgr.getEngineByName("JavaScript");
 	}
 	
 	public static StringCalculator getInstance() {
-		synchronized (StringCalculator.class) {
-			if(stringCalculator==null) {
-				stringCalculator = new StringCalculator();
+		if (stringCalculator == null) {
+			synchronized (StringCalculator.class) {
+				if (stringCalculator == null) {
+					stringCalculator = new StringCalculator();
+				}
 			}
 		}
 		return stringCalculator;

@@ -12,7 +12,7 @@ class ValidatorTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		validator = new ExpressionValidator();
+		validator = ExpressionValidator.getInstance();
 	}
 
 	@Test
